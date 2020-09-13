@@ -513,6 +513,21 @@ function onIncidentManagerAcknowledge(message){
                 }
             }
         })
+
+        request.get({
+            url: pagerduty_user_ref_url,
+            headers: auth_header
+        },
+        function (error, response, body) {
+            if(error){
+                console.log(error);
+            }
+            else{
+                console.log("User sucessfuly retreived");
+                var user = JSON.parse(body)["user"];
+                console.log("Break glass for Incident Manager: " + user["email"]);
+            }
+        })        
     }
 }
 
